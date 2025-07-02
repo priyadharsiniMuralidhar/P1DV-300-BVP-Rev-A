@@ -1,0 +1,153 @@
+<html>
+  <head>
+    <title>Beginner's Luck Online Gaming &amp; Casino</title>
+    <link
+      rel="icon"
+      href="https://cdn.glitch.global/2ef0ca36-d8d7-4c06-b231-374cc15fda3a/favicon.png?v=1661169643668"
+    />
+    <link rel="stylesheet" href="/css/glitch.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+    <link rel="stylesheet" href="/css/flow-updated.css" />
+
+    <script type="text/javascript">
+      // Set as .env variables
+      const companyId = "<%= companyId %>";
+      /* TENANT ENDPOINT - .env variable DAVINCI_API_URL */
+      const flowURL = "<%= flowURL %>";
+
+      // Initialize click handlers
+      function initialize() {
+        // Retrieve the modal popup div
+        var modalPopup = document.getElementById("modalPopup");
+
+        // Create 'Register Now' button click handler
+        var registerBtn = document.getElementById("btn-register");
+        registerBtn.onclick = function () {
+          // Display the modal popup div
+          modalPopup.style.display = "block";
+          loadRegistrationFlow();
+        };
+
+        // Create the 'Close' 'X' button click handler
+        var closeBtn = document.getElementById("closeBtn");
+        closeBtn.onclick = function () {
+          closeModalPopup();
+        };
+
+        /* Create the Window click handle that will close the popup
+           if the user clicks anywhere outside of it */
+        window.onclick = function (event) {
+          if (event.target === modalPopup) {
+            closeModalPopup();
+          }
+        };
+      }
+
+      // Close the modal popup
+      function closeModalPopup() {
+        // Hide the modal popup div
+        modalPopup.style.display = "none";
+      }
+
+      function loadwidget(policyId, renderComponent) {
+        var requestOptions = {
+          method: "GET",
+        };
+
+        /*** Retrieve DaVinci Token ***/
+        fetch("/fetchDaVinciToken", requestOptions)
+          .then((response) => response.json())
+          .then((responseData) => {
+            var props = {
+              config: {
+                method: "runFlow",
+                apiRoot: flowURL,
+                accessToken: responseData.access_token,
+                companyId: companyId,
+                policyId: policyId,
+              },
+              useModal: false,
+              successCallback,
+              errorCallback,
+              onCloseModal,
+            };
+            /*** Invoke DaVinci Widget ****/
+
+            console.log(responseData.access_token);
+
+            console.log(props);
+            davinci.skRenderScreen(
+              document.getElementById(renderComponent),
+              props
+            );
+          })
+          .catch((error) => console.log("error", error));
+
+        function successCallback(response) {
+          console.log(response);
+        }
+
+        function errorCallback(error) {
+          console.log(error);
+        }
+
+        function onCloseModal() {
+          console.log("onCloseModal");
+        }
+      }
+    </script>
+  </head>
+
+  <body onload="initialize()">
+    <div class="top-bar">
+      <table class="content-holder">
+        <tr>
+          <td><img class="main-site-logo" /></td>
+          <td><h1>Beginner's Luck Online Gaming &amp; Casino</h1></td>
+          <td>
+            <button
+              id="signOnBtn"
+              onclick="alert('Not yet Implement. Future exercise!')"
+            >
+              <i class="fa fa-sign-in" aria-hidden="true"></i> Sign On
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <table class="content-holder top-spacer">
+        <tr>
+          <td class="main-content">
+            <h2>Welcome to Beginner's Luck!</h2>
+            <p>
+              If this is your first visit, please click the
+              <strong>Register Now</strong> below you create your free account
+            </p>
+            <p>
+              Already registered? Great to see you back! Please click the
+              <strong>Sign On</strong> button above
+            </p>
+            <button id="btn-register" class="margin-top">
+              <i class="fa fa-user-plus" aria-hidden="true"></i> Register Now!
+            </button>
+          </td>
+          <td>
+            <img class="casino" />
+          </td>
+        </tr>
+      </table>
+    </div>
+    <hr />
+    <div class="pingenablement">
+      &copy; 2022 Ping Identity - DaVinci Enablement Session Material
+    </div>
+
+    <!-- PopUp Modal Dialog where the DaVinci Flow will be placed -->
+    <div id="modalPopup" class="modal">
+      <div class="modal-content">
+        <div id="closeBtn" class="close">&times;</div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "//1": "describes your app and its dependencies",
+  "//2": "https://docs.npmjs.com/files/package.json",
+  "//3": "updating this file will download and update your packages",
+  "name": "DaVinci-Training-App",
+  "version": "1.0.0",
+  "description": "Server side implmentation for Ping Identity DaVinci Instructor-led training",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-fetch": "^2.7.0",
+    "ejs": "^3.1.9"
+  },
+  "engines": {
+    "node": "14.x"
+  },
+  "repository": {
+    "url": "https://glitch.com/edit/#!/ping-davinci-training-lab-v2"
+  },
+  "keywords": [
+    "node",
+    "glitch",
+    "pingone davinci"
+  ]
+}

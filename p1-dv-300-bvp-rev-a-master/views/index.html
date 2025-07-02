@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!--
+IMPORTANT API ENDPOINT CONFIGURATION
+
+Depending on what region your PingOne tenant is located you may need to
+adjust the endpoints defined in this code to use the correct region endpoints.
+
+The code on this page is by default using North American endpoints, if that is
+your region then no changes are needed. Otherwise, look for the following
+comment tag as to where you need to change the endpoints:
+
+    TENANT ENDPOINT
+      For API endpoint defined in your .env variable DAVINCI_API_URL
+
+Then change them as follows:
+  APAC
+    api.pingone.com is api.pingone.asia
+    auth.pingone.com is auth.pingone.asia
+    orchestrate-api.pingone.com is orchestrate-api.pingone.asia
+    assets.pingone.com is assets.pingone.asia
+  EU
+    api.pingone.com is api.pingone.eu
+    auth.pingone.com is auth.pingone.eu
+    orchestrate-api.pingone.com is orchestrate-api.pingone.eu
+    assets.pingone.com is assets.pingone.eu
+  Canada
+    api.pingone.com is api.pingone.ca
+    auth.pingone.com is auth.pingone.ca
+    orchestrate-api.pingone.com is orchestrate-api.pingone.ca
+    assets.pingone.com is assets.pingone.ca
+-->
+<html lang="en">
+  <head>
+    <link
+      rel="icon"
+      href="https://cdn.glitch.global/deee0fd1-6cbf-4fd4-b0ab-9e576ed71f35/favicon.png?v=1658494414762"
+    />
+    <link rel="stylesheet" href="css/flow-style.css" />
+    <title>Beginner's Luck - Account Registration</title>
+
+    <!-- TENANT ENDPOINT -->
+    <script
+      type="text/javascript"
+      src="https://assets.pingone.com/davinci/latest/davinci.js"
+    ></script>
+
+    <script>
+      // Set as .env variables
+      const companyId = "<%= companyId %>";
+      /* TENANT ENDPOINT - .env variable DAVINCI_API_URL */
+      const flowURL = "<%= flowURL %>";
+      const policyId = "";
+
+      function loadwidget() {
+        var requestOptions = {
+          method: "GET",
+        };
+
+        /*** Retrieve DaVinci Token ***/
+        fetch("/fetchDaVinciToken", requestOptions)
+          .then((response) => response.json())
+          .then((responseData) => {
+            // setup properties to call widget to render flow
+            var props = {
+              config: {
+                method: "runFlow",
+                /* TENANT ENDPOINT - .env variable DAVINCI_FLOW_URL */
+                apiRoot: flowURL,
+                accessToken: responseData.access_token,
+                companyId: companyId,
+                policyId: policyId,
+              },
+              useModal: false,
+              successCallback,
+              errorCallback,
+              onCloseModal,
+            };
+            /*** Invoke DaVinci Widget ****/
+
+            // console.log(responseData.access_token);
+
+            console.log(props);
+            davinci.skRenderScreen(document.getElementById("widget"), props);
+          })
+          .catch((error) => console.log("error", error));
+
+        function successCallback(response) {
+          console.log(response);
+        }
+
+        function errorCallback(error) {
+          document.getElementById("widget").innerHTML = JSON.stringify(error);
+        }
+
+        function onCloseModal() {
+          console.log("onCloseModal");
+        }
+      }
+    </script>
+  </head>
+
+  <body onload="loadwidget()">
+    <div id="widget" class="skWidget widget">
+      If you're seeing this message, the DaVinci flow hasn't loaded yet.
+    </div>
+  </body>
+</html>

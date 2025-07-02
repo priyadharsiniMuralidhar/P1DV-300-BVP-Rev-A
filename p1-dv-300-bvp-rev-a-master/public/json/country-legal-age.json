@@ -1,0 +1,36 @@
+{
+  "ages": [
+    {
+      "country": "CA",
+      "age": "19"
+    },
+    {
+      "country": "GB",
+      "age": "18"
+    },
+    {
+      "country": "US",
+      "age": "21"
+    },
+    {
+      "country": "DE",
+      "age": "18"
+    },
+    {
+      "country": "CN",
+      "age": "18"
+    },
+    {
+      "country": "AU",
+      "age": "18"
+    },
+    {
+      "country": "IL",
+      "age": "18"
+    },
+    {
+      "country": "FR",
+      "age": "18"
+    }
+  ]
+}

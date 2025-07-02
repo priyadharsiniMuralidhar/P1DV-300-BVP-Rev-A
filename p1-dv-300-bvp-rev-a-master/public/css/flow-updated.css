@@ -1,0 +1,276 @@
+/* Google Font Titillium */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+/* Awesome Icons */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
+:root {
+  --theme-font-color: #303030;
+  --theme-primary-color: #339989;
+  --theme-secondary-color: #6cb352;
+  --theme-highlight-color: #3db8a5;
+  --theme-secondary-highlight-color: #73bf5c;
+  --theme-error-message-color: #ee010b;
+  --theme-content-border-color: #339989;
+  --theme-readonly-input: #f2f3f5;
+  --theme-logo: url("https://cdn.glitch.global/446927ec-783f-4130-8e7c-8c52d71246d8/new-logo.png?v=1668545852992");
+}
+
+/***************************************
+* HTML Clear default padding/margin
+***************************************/
+html {
+  margin: 0;
+  padding: 0;
+}
+
+/***************************************
+* Set page font. 
+*      See https://fonts.google.com/
+***************************************/
+body {
+  font-family: "Montserrat", sans-serif;
+  font-size: 12pt;
+  color: var(--theme-font-color);
+}
+
+/***************************************
+* Page panel 
+***************************************/
+section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/***************************************
+* paragraphs
+***************************************/
+section p {
+  padding: 10px 0px;
+  /*   text-align: center; */
+}
+/***************************************
+* H1 page within section
+***************************************/
+section h1,
+h2,
+h3 {
+  margin: 10px 0px 10px 0px;
+  padding: 0;
+  text-align: center;
+}
+
+/***************************************
+* Input types within section
+***************************************/
+input[type="text"],
+input[type="password"] {
+  line-height: 2;
+  padding-left: 5px;
+  margin: 10px 0px;
+  width: 100%;
+  width: -moz-available;
+  width: -webkit-fill-available;
+}
+
+input[type="text"]:read-only,
+input[type="password"]:read-only {
+  background-color: var(--theme-readonly-input);
+  border-style: none;
+}
+
+select {
+  width: 100%;
+}
+
+/***************************************
+* Field focus color within section
+***************************************/
+section input:focus,
+section button:focus,
+section select:focus {
+  outline-color: var(--theme-highlight-color);
+}
+
+/***************************************
+* Buttons within section
+***************************************/
+.buttonbar button,
+.registerbar button {
+  padding: 5px;
+  width: 100%;
+  height: 40px;
+  transition-duration: 0.2s;
+  border: 1px solid var(--theme-font-color);
+  border-radius: 3px;
+  background-color: var(--theme-primary-color);
+  color: white;
+}
+
+/***************************************
+* Register Button
+***************************************/
+.registerbar button {
+  width: 60%;
+  background-color: var(--theme-secondary-color);
+}
+
+/***************************************
+* Button Hover within section
+***************************************/
+.buttonbar button:hover {
+  background-color: var(--theme-highlight-color);
+  color: var(--theme-font-color);
+}
+
+/***************************************
+* Forgot/Register div
+***************************************/
+.forgotpassword,
+.registerbar {
+  text-align: center;
+  margin: 10px 0px;
+}
+
+/***************************************
+* Forgot Password Button
+***************************************/
+.forgotpassword button {
+  background: none !important;
+  border: none;
+}
+/***************************************
+* Forgot Password Button Hover
+***************************************/
+.forgotpassword button:hover {
+  text-decoration: underline;
+}
+
+/***************************************
+* Register Button Hover
+***************************************/
+.registerbar button:hover {
+  background-color: var(--theme-secondary-highlight-color);
+}
+
+/***************************************
+* Block labels within section
+***************************************/
+section label {
+  display: block;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/***************************************
+* First section on page
+***************************************/
+section:first-of-type {
+  margin-top: 20px;
+}
+
+/***************************************
+* Company Logo
+***************************************/
+.logo {
+  content: var(--theme-logo);
+  height: 80px;
+}
+
+/***************************************
+* Company Logo wrapper div
+***************************************/
+.logo-wrapper {
+  text-align: center;
+}
+/***************************************
+* Card Captcha test
+***************************************/
+.captcha-image,
+.centered-image {
+  text-align: center;
+  margin: 20px 0px 20px 0px;
+}
+
+/***************************************
+* Underage image wrapper div
+***************************************/
+.underage-wrapper {
+  text-align: center;
+  margin: 20px 0px 10px 0px;
+}
+
+/***************************************
+* Bordered content div
+***************************************/
+.content {
+  border: 1px solid var(--theme-content-border-color);
+  padding: 20px;
+  min-width: 250px;
+  width: 250px;
+}
+
+/***************************************
+* Button bar div
+***************************************/
+.buttonbar {
+  margin-top: 20px;
+}
+
+/***************************************
+* Sign on Error Message Placeholder
+***************************************/
+.error-message {
+  color: var(--theme-error-message-color);
+  margin-top: 15px;
+}
+
+/***************************************
+* Error Div
+***************************************/
+.error-message-wrapper {
+  margin-top: 15px;
+}
+
+/***************************************
+* Bordered register content div
+***************************************/
+.register-content {
+  border: 1px solid var(--theme-content-border-color);
+  padding: 20px;
+  min-width: 360px;
+  width: 360px;
+}
+
+/***************************************
+* Wrapper for form fields that multiple 
+* per row
+***************************************/
+.formfield-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/***************************************
+* Divs inside of formfield wrapper
+***************************************/
+.formfield-wrapper div {
+  width: 50%;
+}
+
+/***************************************
+* Checkbox labels 
+***************************************/
+label.checkbox {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+/***************************************
+* Toggle Password
+***************************************/
+.togglepwd {
+  margin-left: -30px;
+  cursor: pointer;
+}
