@@ -62,7 +62,7 @@ app.post("/fetchJackpotData", function (request, response) {
       var jsonData = JSON.parse(result);
       if (
         jsonData.additionalProperties &&
-        jsonData.additionalProperties.httpStatusCode === 200
+        (jsonData.additionalProperties.httpStatusCode === 200 || jsonData.additionalProperties.httpStatusCode === 0)
       ) {
         result = jsonData.additionalProperties;
         console.log(result);
